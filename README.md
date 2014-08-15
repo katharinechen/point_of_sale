@@ -4,8 +4,6 @@ The object of this project is to make a point of sale (POS) system for a conveni
 
 ----
 
-As a store manager, I want to add a new product to the POS, with its name and price, so that I can keep track of what we're selling.
-
 As a store manager, I want to create logins for my cashiers, so I know who is responsible for ringing up which purchases.
 
 As a cashier, I want to choose which products and how many of each a customer is purchasing, so that I can see what their total cost is.
