@@ -16,15 +16,12 @@ def main_menu
 	answer = nil  
 	until answer == 3 
 		puts "Press '1' if you are a store manager."
-		puts "Press '2' if you are a cashier."
 		puts "Press '3' if you want to exit the program."
 		answer = gets.chomp.to_i  
 
 		case answer 
 		when 1 
 			store_manager_menu
-		when 2 
-			cahsier_menu
 		when 3
 			exit_routine
 		else 
@@ -56,9 +53,6 @@ def store_manager_menu
 			puts "Please enter a valid option."
 		end
 	end 
-end
-
-def cashier_menu
 end
 
 def login_crud_menu 

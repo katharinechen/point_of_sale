@@ -1,10 +1,10 @@
-#h1 Point of Sale 
+# Point of Sale 
 
 The object of this project is to make a point of sale (POS) system for a convenience store. A POS is a system that lets cashiers ring up customers for their purchase. 
 
-----
+The model assumes an infinite inventory. 
 
-As a store manager, I want to create logins for my cashiers, so I know who is responsible for ringing up which purchases.
+----
 
 As a cashier, I want to choose which products and how many of each a customer is purchasing, so that I can see what their total cost is.
 
