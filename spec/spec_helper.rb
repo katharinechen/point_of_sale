@@ -3,6 +3,8 @@ require 'pg'
 require 'active_record'
 require 'shoulda-matchers'
 
+require 'product'
+
 ActiveRecord::Base.establish_connection(YAML::load(File.open('./db/config.yml'))["test"])
 
 RSpec.configure do |config|

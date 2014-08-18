@@ -22,6 +22,8 @@ def main_menu
 		case answer 
 		when 1 
 			store_manager_menu
+		when 2 
+			cashier_main_menu 
 		when 3
 			exit_routine
 		else 
@@ -145,6 +147,7 @@ def product_menu
 		else
 			puts "Please enter a valid option."
 		end
+		sleep 3.0
 	end 
 end 
 
@@ -155,8 +158,13 @@ def add_product
 	product_price = gets.chomp 
 
 	new_product = Product.new(name: product_name, price: product_price)
-	new_product.save 
-	puts "You have successfully add #{product_name}. #{product_name} will be selling for $#{product_price}."
+	if new_product.save 
+		puts "You have successfully add #{product_name}. #{product_name} will be selling for $#{product_price}."
+	else 
+		puts "Attempt failed. Please enter both a name and a price for the product."
+		new_product.errors.full_messages.each { |message| puts message }
+		add_product
+	end
 end 
 
 def delete_product 
