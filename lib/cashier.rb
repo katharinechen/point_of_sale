@@ -1,6 +1,7 @@
 class Cashier < ActiveRecord::Base 
 	
 	has_many :products, dependent: :destroy 
+	has_and_belongs_to_many :stores 
 
 	validates :name, :presence => true 
 	validates :login, :presence => true 

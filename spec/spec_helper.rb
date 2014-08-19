@@ -5,6 +5,7 @@ require 'shoulda-matchers'
 
 require 'product'
 require 'cashier'
+require 'store'
 
 ActiveRecord::Base.establish_connection(YAML::load(File.open('./db/config.yml'))["test"])
 

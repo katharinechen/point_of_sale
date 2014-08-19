@@ -16,8 +16,8 @@ class Product < ActiveRecord::Base
 
 	def subtract_product(number)
 		self.quantity = self.quantity - number 
-		puts "You have successfully decreased the quantity of #{self.name} by #{number}. There are currently #{self.quantity} #{self.name}."
 		self.save 
+		puts "You have successfully decreased the quantity of #{self.name} by #{number}. There are currently #{self.quantity} #{self.name}."
 	end 
 
 private 
