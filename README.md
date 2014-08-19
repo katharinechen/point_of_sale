@@ -1,46 +1,47 @@
 # Point of Sale 
 
-The object of this project is to make a point of sale (POS) system for a convenience store. A POS is a system that lets cashiers ring up customers for their purchase. 
+##About 
+This project is completed by Katharine Chen for the Active Record assessment for Epicodus. 
 
-The model assumes an infinitef inventory. 
+##Description 
+The objective of this project is to make a point of sale (POS)system for a convenience store, using Active Record. A POS is a system that lets cashiers ring up customers for their purchase. The project must include at least one one-to-many relationship, and one many-to-many relationship, using at least one scope, validation, and callback.  
 
+##Functionality 
 
-The goal of this assessment is to create a program using Active Record, including an one-to-many relationshop or a many-to-many relationship, using at least one scope, validation, and callback. 
-(1) One-to-many relationship
+-Store managers can add a new product to the POS, with its name and price, so they can keep track of what we're selling.
 
-	cashier has customers 
-	cashier has sold many products 
-	customer has many products 
+-Store managers can create logins for cashiers, so store managers know who is responsible for ringing up which purchases.
 
-(2) Many-to-many relationship
+##Installation 
+
+Clone the repository in your terminal. 
 	
-	products and customers 
+	git clone https://github.com/katharinechen/point_of_sale.git 
 
-(3) Scope
+Bundle install all of the gems. 
 
-(4) Validation
+	bundle 
 
-(5) Callbacks 
+To run the program, run user_interface.rb in the terminal. 
 
+	ruby user_interface.rb 
 
+##License
 
+MIT
 
-----
+##Items to Complete 
 
-#Things to Work on: 
+-As a cashier, I want to choose which products and how many of each a customer is purchasing, so that I can see what their total cost is.
 
+-As a customer, I want to see a receipt on the screen, so that I can make sure that the cashier rang me up correctly and told me the right total. I would like the cashier to be able to print out the receipt, but that ain't gonna happen ;)
 
-(1) As a cashier, I want to choose which products and how many of each a customer is purchasing, so that I can see what their total cost is.
+-As a store manager, I want to see the total amount of sales for a date range of my choosing, so that I can keep track of how much money I am making.
 
-(2) As a customer, I want to see a receipt on the screen, so that I can make sure that the cashier rang me up correctly and told me the right total. I would like the cashier to be able to print out the receipt, but that ain't gonna happen ;)
+-As a manager, I want to see number of customers each cashier has checked out in a date range of my choosing, so that I can see who is the most efficient.
 
+-As a customer, I want to be able to return items, so that I can bring back things I don't want.
 
-(3) As a store manager, I want to see the total amount of sales for a date range of my choosing, so that I can keep track of how much money I am making.
+-As a store manager, I want to see which products are most popular, so I can order more of them.
 
-(4) As a manager, I want to see number of customers each cashier has checked out in a date range of my choosing, so that I can see who is the most efficient.
-
-(5) As a customer, I want to be able to return items, so that I can bring back things I don't want.
-
-(6) As a store manager, I want to see which products are most popular, so I can order more of them.
-
-(7) As a store manager, I want to see which items are returned most often, so I can catch any quality problems.
+-As a store manager, I want to see which items are returned most often, so I can catch any quality problems.
