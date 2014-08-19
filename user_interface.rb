@@ -129,8 +129,9 @@ def product_menu
 		puts "Press '1' to add a product."
 		puts "Press '2' to delete a product."
 		puts "Press '3' to list all products."
-		puts "Press '4' to return to the previous menu."
-		puts "Press '5' to exit."
+		puts "Press '4' to update the quantity."
+		puts "Press '5' to return to the previous menu."
+		puts "Press '6' to exit."
 		answer = gets.chomp.to_i 
 
 		case answer 
@@ -141,8 +142,10 @@ def product_menu
 		when 3 
 			list_products 
 		when 4
+			update_quantity 
+		when 5
 			store_manager_menu
-		when 5 
+		when 6 
 			exit_routine
 		else
 			puts "Please enter a valid option."
@@ -151,15 +154,38 @@ def product_menu
 	end 
 end 
 
+def update_quantity 
+	puts "Please enter the name of the product you want to update:"
+	product_name = gets.chomp.capitalize
+	product = Product.find_by(name: "#{product_name}")
+
+	puts "Do you want to add or subtract product? Press 'A' to add, or 'B' to subtract."
+	answer = gets.chomp.downcase 
+
+	puts "How many?"
+	number = gets.chomp.to_i 
+
+	case answer 
+	when "a"
+		product.add_product(number)
+	when "b"
+		product.subtract_product(number)
+	else
+		puts "Please enter a valid option."
+	end
+end 
+
 def add_product
 	puts "Please enter the name of the product you want to add:"
 	product_name = gets.chomp.capitalize  
 	puts "Please enter the price of the object (e.g. 14.00):"
 	product_price = gets.chomp 
+	puts "Please enter the quantity of the object (e.g. 5):"
+	quantity = gets.chomp 
 
-	new_product = Product.new(name: product_name, price: product_price)
+	new_product = Product.new(name: product_name, price: product_price, quantity: quantity)
 	if new_product.save 
-		puts "You have successfully add #{product_name}. #{product_name} will be selling for $#{product_price}."
+		puts "You have successfully add #{product_name}. #{product_name} will be selling for $#{product_price}. There are currently #{quantity} available."
 	else 
 		puts "Attempt failed. Please enter both a name and a price for the product."
 		new_product.errors.full_messages.each { |message| puts message }
@@ -181,7 +207,7 @@ def list_products
 	puts "Here is a list of all of the products you have listed in your store."
 	product_list = Product.all 
 	product_list.each do |product|
-		puts "Name: #{product.name} Price: #{product.price}"
+		puts "Name: #{product.name} Price: $#{product.price} Amount: #{product.quantity}"
 	end 
 end 
 

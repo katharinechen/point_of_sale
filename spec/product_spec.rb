@@ -25,4 +25,20 @@ describe "Product" do
 		new_product = Product.create({:name => "Ice cream", :price => "15.00", :quantity => 5})
 		expect(new_product.name).to eq "Ice Cream"
 	end 
+
+	describe :add_product do 
+		it "should add a specific number of products to the total quantity of the product" do 
+			new_product = Product.create({:name => "Ice Cream", :price => "15.00", :quantity => 5})
+			new_product.add_product(10)
+			expect(new_product.quantity).to eq 15 
+		end 
+	end 
+
+	describe :subtract_product do 
+		it "should add a specific number of products to the total quantity of the product" do 
+			new_product = Product.create({:name => "Ice Cream", :price => "15.00", :quantity => 5})
+			new_product.add_product(10)
+			expect(new_product.quantity).to eq 15 
+		end 
+	end 
 end 

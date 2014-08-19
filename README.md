@@ -4,13 +4,14 @@
 This project is completed by Katharine Chen for the Active Record assessment for Epicodus. 
 
 ##Description 
-The objective of this project is to make a point of sale (POS)system for a convenience store, using Active Record. A POS is a system that lets cashiers ring up customers for their purchase. The project must include at least one one-to-many relationship, and one many-to-many relationship, using at least one scope, validation, and callback.  
+The objective of this project is to make a super basic point of sale (POS) system for a convenience store, using Active Record. A POS is a system that lets cashiers ring up customers for their purchase. The project must include at least one one-to-many relationship, and one many-to-many relationship, using at least one scope, validation, and callback.  
 
 ##Functionality 
 
 -Store managers can add a new product to the POS, with its name, price, and available quantity, so they can keep track of what we're selling.
-
+-Store managers can update the quantity of a specific product. 
 -Store managers can create logins for cashiers, so store managers know who is responsible for ringing up which purchases.
+-Cashiers can work in many stores. Stores can have many cashiers. 
 
 ##Installation 
 
@@ -29,6 +30,7 @@ To run the program, run user_interface.rb in the terminal.
 ##License
 
 MIT
+
 
 ##Items to Complete 
 
