@@ -16,8 +16,13 @@ describe "Product" do
 		expect(new_product.save).to eq false 
 	end  
 
+	it "validates presence of quantity for the product" do 
+		new_product = Product.create({:name => "Ice cream", :price => "15.00", :quantity => 5.5}) 
+		expect(new_product.save).to eq false 
+	end 
+
 	it 'titleizes the name of the product' do 
-		new_product = Product.create({:name => "Ice cream", :price => "15.00"})
+		new_product = Product.create({:name => "Ice cream", :price => "15.00", :quantity => 5})
 		expect(new_product.name).to eq "Ice Cream"
 	end 
 end 

@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
 
 	validates :name, :presence => true, :length => { :maximum => 20}
 	validates :price, :presence => true 
+	validates :quantity, :presence => true, numericality: { only_integer: true }
 
 	before_save :titleize_name 
 

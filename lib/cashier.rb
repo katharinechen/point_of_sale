@@ -4,6 +4,7 @@ class Cashier < ActiveRecord::Base
 
 	validates :name, :presence => true 
 	validates :login, :presence => true 
+	validates_associated :products 
 
 	before_save :titleize_name, :login_downcase  
 
