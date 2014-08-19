@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
 private 
 	
 	def titleize_name 
-		self.name = self.name.split(" ").map! { |word| word.capitalize}.join(" ") 
+		self.name = self.name.split(" ").map { |word| word.capitalize}.join(" ") 
 	end 
 
 end 

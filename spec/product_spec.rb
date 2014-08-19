@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe :Product do 
+describe "Product" do 
 	it "validates presence of name for the product" do 
 		new_product = Product.new({:name => ''})
 		expect(new_product.save).to eq false 

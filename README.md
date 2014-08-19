@@ -9,7 +9,6 @@ The objective of this project is to make a point of sale (POS)system for a conve
 ##Functionality 
 
 -Store managers can add a new product to the POS, with its name and price, so they can keep track of what we're selling.
-
 -Store managers can create logins for cashiers, so store managers know who is responsible for ringing up which purchases.
 
 ##Installation 
