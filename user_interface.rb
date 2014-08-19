@@ -2,6 +2,7 @@ require 'pg'
 require 'active_record'
 require './lib/product'
 require './lib/cashier'
+require './lib/store'
 require 'pry'
 
 ActiveRecord::Base.establish_connection(YAML::load(File.open('./db/config.yml'))["development"])
@@ -38,6 +39,7 @@ def store_manager_menu
 	until answer == 5 
 		puts "Press '1' if you want to work with products."
 		puts "Press '2' if you want to work with logins for cashiers."
+		puts "Press '3' if you want to work with stores."
 		puts "Press '4' if you want to return to the main menu."
 		puts "Press '5' if you want to exit."
 		answer = gets.chomp.to_i 
@@ -47,6 +49,8 @@ def store_manager_menu
 			product_menu 
 		when 2 
 			login_crud_menu
+		when 3
+			store_menu 
 		when 4
 			main_menu
 		when 5
@@ -56,6 +60,63 @@ def store_manager_menu
 		end
 	end 
 end
+
+def store_menu 
+	header
+	answer = nil 
+
+	until answer == 5 
+		puts "Press '1' to create stores."
+		puts "Press '3' to delete stores."
+		puts "Press '4' to list stores."
+		puts "Press '5' to return to the previous menu."
+		puts "Press '6' to exit."
+		answer = gets.chomp.to_i 
+
+		case answer 
+		when 1 
+			create_store 
+		when 3
+			delete_stores
+		when 4 
+			list_store 
+		when 5
+			store_manager_menu
+		when 6
+			exit_routine
+		else
+			puts "Please enter a valid option."
+		end
+		sleep 2.0
+		header
+		store_menu 
+	end 
+end 
+
+def create_store
+	puts "Please enter the name of the store."
+	store_name = gets.chomp 
+	new_store = Store.create(name: store_name)
+	puts "You have successfully added #{store_name}." 
+end 
+
+def delete_store
+	list_store 
+	puts " "
+	puts "Please enter the name of the store you want to delete:"
+	deleted_store = gets.chomp.capitalize 
+	selected_store = Store.find_by(name: deleted_store)
+	selected_store.destroy 
+	puts "You have successfully deleted #{deleted_store}."
+end
+
+def list_store
+	puts "Here is the list of all your stores:"
+	store_list = Store.all 
+	store_list.each do |store| 
+		puts "#{store.name}"
+	end 
+end 
 
 def login_crud_menu 
 	header
