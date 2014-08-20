@@ -6,10 +6,9 @@ class CreateStore < ActiveRecord::Migration
     end
 
     create_table :stores_cashiers, id: false do |t| 
-    	t.belongs_to :store 
-    	t.belongs_to :cashier 
+        t.belongs_to :store 
+        t.belongs_to :cashier 
     end 
-    
   end
 end
 

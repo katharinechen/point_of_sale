@@ -42,6 +42,7 @@ def store_manager_menu
 		puts "Press '3' if you want to work with stores."
 		puts "Press '4' if you want to return to the main menu."
 		puts "Press '5' if you want to exit."
+		puts "Press '6' to work with assignments."
 		answer = gets.chomp.to_i 
 
 		case answer 
@@ -55,6 +56,8 @@ def store_manager_menu
 			main_menu
 		when 5
 			exit_routine
+		when 6 
+			assignments_menu 
 		else
 			puts "Please enter a valid option."
 		end
@@ -65,7 +68,7 @@ def store_menu
 	header
 	answer = nil 
 
-	until answer == 5 
+	until answer == 6 
 		puts "Press '1' to create stores."
 		puts "Press '3' to delete stores."
 		puts "Press '4' to list stores."
@@ -277,5 +280,114 @@ def exit_routine
 	sleep 0.8
 	exit 
 end 
+
+def assignments_menu 
+	answer = nil 
+	until answer == 5 
+		header 
+		system 'clear'
+		puts "Press '1' to add an assignment."
+		puts "Press '2' to delete an assignment."
+		puts "Press '3' to list all assignments by cashier."
+		puts "Press '4' to list all assignments by store"
+		puts "Press '5' to return to the previous menu."
+		puts "Press '6' to exit."
+		answer = gets.chomp.to_i 
+
+		case answer 
+		when 1
+			add_assignment 
+		when 2
+			delete_assignment 
+		when 3 
+			list_assignment_by_cashier 
+		when 4
+			list_assignment_by_store  
+		when 5
+			store_manager_menu
+		when 6 
+			exit_routine
+		else
+			puts "Please enter a valid option."
+		end
+		sleep 3.0
+	end 
+end 
+
+def add_assignment
+	puts "Here is the list of stores."
+	store_list = Store.all 
+	store_list.each do |store|
+		puts "#{store.name}"
+	end
+
+	puts " "
+
+	puts "Here is the list of cashiers."
+	cashier_list = Cashier.all 
+	cashier_list.each do |cashier| 
+		puts "#{cashier.name}"
+	end 
+
+	puts "Select a store."
+	store = gets.chomp
+	store = titleize(store)
+	selected_store = Store.find_by(name: store)
+
+	puts "Select a cashier."
+	cashier = gets.chomp
+	cashier = titleize(cashier)
+	selected_cashier = Cashier.find_by(name: cashier)
+
+	selected_cashier.stores << selected_store 
+	puts "You have successfully added #{selected_cashier} to #{selected_store}."
+end 
+
+def delete_assignment
+end
+
+def list_assignment_by_cashier
+
+	puts "Here is a list of all stores each cashier works at." 
+
+	cashiers = Cashier.all 
+
+	cashiers.each do |cashier| 
+		puts cashier.name 
+		if cashier.stores == []
+			puts "This cashier is currently not working at any stores."
+		else 
+			cashier.stores.each do |store|
+				puts store.name 
+			end
+		end
+		puts " "  
+	end 	
+end
+
+def list_assignment_by_store
+
+	puts "Here is a list of all cashiers and the stores they work at." 
+
+	stores = Store.all 
+
+	stores.each do |store| 
+		puts "Store: #{store.name}"
+		if store.cashiers == []
+			puts "There are no cashiers currently working at this store."
+		else 
+			store.cashiers.each do |cashier|
+				puts cashier.name 
+			end
+		end
+		puts " "  
+	end 	
+end
+
+def titleize(input)
+	input = input.split(" ").map! { |word| word.capitalize}.join(" ")
+	input 
+end 
+
 
 main_menu 
