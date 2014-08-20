@@ -80,7 +80,7 @@ def store_menu
 		when 1 
 			create_store 
 		when 3
-			delete_stores
+			delete_store
 		when 4 
 			list_store 
 		when 5
@@ -166,6 +166,7 @@ def create_login
 end 
 
 def edit_login 
+	list_login
 	puts "Please enter the user of the login you want to edit."
 	cashier_name = gets.chomp 
 	puts "What is the new login you want to assign this cashier?"
@@ -286,8 +287,7 @@ def assignments_menu
 	until answer == 5 
 		header 
 		system 'clear'
-		puts "Press '1' to add an assignment."
-		puts "Press '2' to delete an assignment."
+		puts "Press '1' to add or delete an assignment."
 		puts "Press '3' to list all assignments by cashier."
 		puts "Press '4' to list all assignments by store"
 		puts "Press '5' to return to the previous menu."
@@ -296,9 +296,7 @@ def assignments_menu
 
 		case answer 
 		when 1
-			add_assignment 
-		when 2
-			delete_assignment 
+			add_or_delete_assignment 
 		when 3 
 			list_assignment_by_cashier 
 		when 4
@@ -314,7 +312,7 @@ def assignments_menu
 	end 
 end 
 
-def add_assignment
+def add_or_delete_assignment
 	puts "Here is the list of stores."
 	store_list = Store.all 
 	store_list.each do |store|
@@ -339,12 +337,25 @@ def add_assignment
 	cashier = titleize(cashier)
 	selected_cashier = Cashier.find_by(name: cashier)
 
-	selected_cashier.stores << selected_store 
-	puts "You have successfully added #{selected_cashier} to #{selected_store}."
+	puts "Do you want to add or delete the association?"
+	puts "Press '1' to add."
+	puts "Press '2' to delete."
+	choice = gets.chomp.to_i
+
+	case choice
+	when 1 
+		selected_cashier.stores << selected_store 
+		puts "You have successfully added #{selected_cashier.name} to #{selected_store.name}."
+	when 2 
+		selected_cashier.stores.delete(selected_store)
+		puts "You have successfully added #{selected_cashier.name} to #{selected_store.name}."
+	else
+		puts "Please put a valid option."
+		sleep 1.0 	
+		add_or_delete_assignment
+	end 
 end 
 
-def delete_assignment
-end
 
 def list_assignment_by_cashier
 
