@@ -15,17 +15,15 @@ end
 def main_menu 
 	header 
 	answer = nil  
-	until answer == 3 
+	until answer == 2 
 		puts "Press '1' if you are a store manager."
-		puts "Press '3' if you want to exit the program."
+		puts "Press '2' if you want to exit the program."
 		answer = gets.chomp.to_i  
 
 		case answer 
 		when 1 
 			store_manager_menu
-		when 2 
-			cashier_main_menu 
-		when 3
+		when 2
 			exit_routine
 		else 
 			puts "Please enter a valid option."
@@ -36,13 +34,14 @@ end
 def store_manager_menu	
 	header 	
 	answer = nil 
-	until answer == 5 
+	until answer == 6 
 		puts "Press '1' if you want to work with products."
 		puts "Press '2' if you want to work with logins for cashiers."
 		puts "Press '3' if you want to work with stores."
-		puts "Press '4' if you want to return to the main menu."
-		puts "Press '5' if you want to exit."
-		puts "Press '6' to work with assignments."
+		puts "Press '4' to work with assignments."
+		puts "Press '5' if you want to return to the main menu."
+		puts "Press '6' if you want to exit."
+
 		answer = gets.chomp.to_i 
 
 		case answer 
@@ -52,12 +51,12 @@ def store_manager_menu
 			login_crud_menu
 		when 3
 			store_menu 
-		when 4
-			main_menu
-		when 5
-			exit_routine
-		when 6 
+		when 4 
 			assignments_menu 
+		when 5
+			main_menu
+		when 6
+			exit_routine
 		else
 			puts "Please enter a valid option."
 		end
@@ -68,24 +67,24 @@ def store_menu
 	header
 	answer = nil 
 
-	until answer == 6 
+	until answer == 5 
 		puts "Press '1' to create stores."
-		puts "Press '3' to delete stores."
-		puts "Press '4' to list stores."
-		puts "Press '5' to return to the previous menu."
-		puts "Press '6' to exit."
+		puts "Press '2' to delete stores."
+		puts "Press '3' to list stores."
+		puts "Press '4' to return to the previous menu."
+		puts "Press '5' to exit."
 		answer = gets.chomp.to_i 
 
 		case answer 
 		when 1 
 			create_store 
-		when 3
+		when 2
 			delete_store
-		when 4 
+		when 3 
 			list_store 
-		when 5
+		when 4
 			store_manager_menu
-		when 6
+		when 5
 			exit_routine
 		else
 			puts "Please enter a valid option."
@@ -356,11 +355,8 @@ def add_or_delete_assignment
 	end 
 end 
 
-
 def list_assignment_by_cashier
-
 	puts "Here is a list of all stores each cashier works at." 
-
 	cashiers = Cashier.all 
 
 	cashiers.each do |cashier| 
@@ -377,11 +373,8 @@ def list_assignment_by_cashier
 end
 
 def list_assignment_by_store
-
 	puts "Here is a list of all cashiers and the stores they work at." 
-
 	stores = Store.all 
-
 	stores.each do |store| 
 		puts "Store: #{store.name}"
 		if store.cashiers == []
@@ -399,6 +392,5 @@ def titleize(input)
 	input = input.split(" ").map! { |word| word.capitalize}.join(" ")
 	input 
 end 
-
 
 main_menu 

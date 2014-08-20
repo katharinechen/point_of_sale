@@ -12,6 +12,8 @@ The objective of this project is to make a super basic point of sale (POS) syste
 * Store managers can update the quantity of a specific product. 
 * Store managers can create logins for cashiers, so store managers know who is responsible for ringing up which purchases.
 * Cashiers can work in many stores. Stores can have many cashiers. 
+* Store Managers can assign cashiers to work at specific stores. 
+* Store Managers can generate a list of cashiers for each specific store, as well as a list of stores for each cashier. 
 
 ##Installation 
 
