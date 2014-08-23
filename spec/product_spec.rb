@@ -41,4 +41,14 @@ describe "Product" do
 			expect(new_product.quantity).to eq 15 
 		end 
 	end 
+
+	describe :restock_less_than_five do 
+		it "should list all of the products where quantity is less than five" do 
+			new_product1 = Product.create({:name => "Ice Cream", :price => "15.00", :quantity => 5})
+			new_product2 = Product.create({:name => "Yogurt", :price => "10.00", :quantity => 2})
+			new_product3 = Product.create({:name => "Sandwiches", :price => "7.00", :quantity => 8})
+			expect(Product.restock_less_than_five).to eq [new_product2]
+		end 
+	end 
+
 end 

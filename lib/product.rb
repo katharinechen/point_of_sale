@@ -8,6 +8,8 @@ class Product < ActiveRecord::Base
 
 	before_save :titleize_name 
 
+	scope :restock_less_than_five, -> { Product.where("quantity < 5" )}
+
 	def add_product(number)
 		self.quantity = self.quantity + number 
 		puts "You have successfully increased the quantity of #{self.name} by #{number}. There are currently #{self.quantity} #{self.name}."
