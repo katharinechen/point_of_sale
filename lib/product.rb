@@ -1,31 +1,30 @@
-class Product < ActiveRecord::Base 
+class Product < ActiveRecord::Base
 
-	belongs_to :cashier 
+	belongs_to :cashier
 
 	validates :name, :presence => true, :length => { :maximum => 20}
-	validates :price, :presence => true 
+	validates :price, :presence => true
 	validates :quantity, :presence => true, numericality: { only_integer: true }
 
-	before_save :titleize_name 
+	before_save :titleize_name
 
 	scope :restock_less_than_five, -> { Product.where("quantity < 5" )}
 
 	def add_product(number)
-		self.quantity = self.quantity + number 
+		self.quantity = self.quantity + number
 		puts "You have successfully increased the quantity of #{self.name} by #{number}. There are currently #{self.quantity} #{self.name}."
-		self.save 
-	end 
+		self.save
+	end
 
 	def subtract_product(number)
-		self.quantity = self.quantity - number 
-		self.save 
+		self.quantity = self.quantity - number
+		self.save
 		puts "You have successfully decreased the quantity of #{self.name} by #{number}. There are currently #{self.quantity} #{self.name}."
-	end 
+	end
 
-private 
-	
-	def titleize_name 
-		self.name = self.name.split(" ").map { |word| word.capitalize}.join(" ") 
-	end 
+private
 
-end 
+	def titleize_name
+		self.name = self.name.split(" ").map { |word| word.capitalize}.join(" ")
+	end
+end

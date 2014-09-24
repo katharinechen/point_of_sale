@@ -30,10 +30,11 @@ ActiveRecord::Schema.define(version: 20140820014324) do
 
   create_table "products", force: true do |t|
     t.string   "name"
-    t.decimal  "price",      precision: 8, scale: 2
+    t.decimal  "price",       precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "cashier_id"
+    t.integer  "cashiers_id"
+    t.integer  "integer_id"
     t.integer  "quantity"
   end
 
@@ -42,4 +43,5 @@ ActiveRecord::Schema.define(version: 20140820014324) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
 end

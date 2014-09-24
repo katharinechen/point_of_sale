@@ -1,24 +1,23 @@
-class Cashier < ActiveRecord::Base 
-	
-	has_many :products, dependent: :destroy 
-	has_and_belongs_to_many :stores 
+class Cashier < ActiveRecord::Base
 
-	validates :name, :presence => true 
-	validates :login, :presence => true 
-	validates_associated :products 
+	has_many :products, dependent: :destroy
+	has_and_belongs_to_many :stores
 
-	before_save :titleize_name, :login_downcase  
+	validates :name, :presence => true
+	validates :login, :presence => true
+	validates_associated :products
 
-private 
-	
-	def titleize_name 
-		self.name = self.name.split(" ").map { |word| word.capitalize}.join(" ") 
-	end 
+	before_save :titleize_name, :login_downcase
 
-	def login_downcase 
-		self.login = self.login.split(" ").join("").downcase 
-	end 
+private
 
-end 
+	def titleize_name
+		self.name = self.name.split(" ").map { |word| word.capitalize}.join(" ")
+	end
+
+	def login_downcase
+		self.login = self.login.split(" ").join("").downcase
+	end
+end
 
 
